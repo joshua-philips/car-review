@@ -88,15 +88,18 @@ public class SignUpController implements Initializable {
         String insert = "INSERT INTO people (name, password, gender, location)" + "VALUES(?,?,?,?)";
         connection = handler.getConnection();
 
-        try {
-            preparedStatement = connection.prepareStatement(insert);
-            preparedStatement.setString(1, name.getText());
-            preparedStatement.setString(2, password.getText());
-            preparedStatement.setString(3, getGender());
-            preparedStatement.setString(4, location.getText());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (!name.getText().isEmpty() || !password.getText().isEmpty()) {
+
+            try {
+                preparedStatement = connection.prepareStatement(insert);
+                preparedStatement.setString(1, name.getText());
+                preparedStatement.setString(2, password.getText());
+                preparedStatement.setString(3, getGender());
+                preparedStatement.setString(4, location.getText());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
     }
