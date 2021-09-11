@@ -8,6 +8,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.LoadException;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -28,14 +29,18 @@ public class HomePageController implements Initializable {
         try {
             home = FXMLLoader.load(getClass().getResource("Home.fxml"));
             setNode(home);
+        } catch (LoadException le) {
+            le.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException ne) {
+            ne.printStackTrace();
         }
     }
 
     private void setNode(Node node) {
         holderPane.getChildren().clear();
-        holderPane.getChildren().add(node); // .add((Node) node)
+        holderPane.getChildren().add(node);
 
         FadeTransition ft = new FadeTransition(Duration.millis(1500));
         ft.setNode(node);

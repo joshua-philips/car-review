@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
@@ -68,23 +69,36 @@ public class LoginController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             int count = 0;
-            String retrievedName = "";
-            int retrievedId = 0;
+            // String retrievedName = "";
+            // int retrievedId = 0;
             while (resultSet.next()) {
-                retrievedName = resultSet.getString("name");
-                retrievedId = resultSet.getInt("idpeople");
+                // retrievedName = resultSet.getString("name");
+                // retrievedId = resultSet.getInt("idpeople");
                 count++;
             }
 
             if (count == 1) {
-                System.out.println("Login Successful: " + retrievedName + "\nID: " + retrievedId);
+                login.getScene().getWindow().hide();
+
+                Stage home = new Stage();
+
+                Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+                Scene scene = new Scene(root);
+                home.setScene(scene);
+                home.setResizable(false);
+                home.show();
 
             } else {
-                System.out.println("Username or password incorrect");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Username or password is incorrect");
+                alert.show();
             }
             connection.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
