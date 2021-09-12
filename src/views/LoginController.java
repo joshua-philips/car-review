@@ -46,6 +46,11 @@ public class LoginController implements Initializable {
     private Connection connection;
     private DBHandler handler;
     private PreparedStatement preparedStatement;
+    private static String retrievedName;
+
+    public String getUsername() {
+        return retrievedName;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,11 +74,10 @@ public class LoginController implements Initializable {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             int count = 0;
-            // String retrievedName = "";
-            // int retrievedId = 0;
+
             while (resultSet.next()) {
-                // retrievedName = resultSet.getString("name");
-                // retrievedId = resultSet.getInt("idpeople");
+                retrievedName = resultSet.getString("name");
+                System.out.println(retrievedName);
                 count++;
             }
 

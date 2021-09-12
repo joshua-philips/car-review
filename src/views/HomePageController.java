@@ -52,6 +52,12 @@ public class HomePageController implements Initializable {
         // toolBarRight.getChildresn().add(rippler);
 
         createPage();
+        setUsername(new LoginController().getUsername());
+    }
+
+    public void setUsername(String user) {
+        this.welcome.setText("Welcome, " + user);
+
     }
 
     private void createPage() {
