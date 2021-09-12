@@ -5,16 +5,41 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.LoadException;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToolbar;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class HomePageController implements Initializable {
 
+    @FXML
+    private AnchorPane anchor;
+
+    @FXML
+    private JFXToolbar toolBar;
+
+    @FXML
+    private JFXButton toolBarRight;
+
+    @FXML
+    private Text welcome;
+
+    @FXML
+    private JFXButton btnLogout;
+
+    @FXML
+    private JFXButton btnExit;
     @FXML
     private AnchorPane holderPane;
 
@@ -22,6 +47,10 @@ public class HomePageController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        // JFXRippler rippler = new JFXRippler(lblMenu);
+        // rippler.setMaskType(JFXRippler.RipplerMask.RECT);
+        // toolBarRight.getChildresn().add(rippler);
+
         createPage();
     }
 
@@ -49,6 +78,33 @@ public class HomePageController implements Initializable {
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
         ft.play();
+
+    }
+
+    @FXML
+    void exit(ActionEvent event) {
+        Platform.exit();
+
+    }
+
+    @FXML
+    void logOut(ActionEvent event) throws IOException {
+        btnLogout.getScene().getWindow().hide();
+        Stage stage = new Stage();
+
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("CarReview Login");
+        stage.setResizable(false);
+        stage.show();
+
+    }
+
+    @FXML
+    void homeAction(ActionEvent event) {
 
     }
 

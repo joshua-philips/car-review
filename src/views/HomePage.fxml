@@ -7,14 +7,36 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.HomePageController">
    <children>
+      <AnchorPane fx:id="anchor" layoutX="170.0" layoutY="-1.0" prefHeight="617.0" prefWidth="520.0">
+         <children>
+            <Separator layoutX="11.0" layoutY="55.0" prefHeight="15.0" prefWidth="549.0" />
+            <JFXToolbar fx:id="toolBar" prefHeight="62.0" prefWidth="569.0" style="-fx-background-color: #2d3447;">
+               <right>
+                  <JFXButton fx:id="toolBarRight" prefHeight="48.0" prefWidth="65.0" text=". . ." textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="Roboto Black" size="25.0" />
+                     </font>
+                  </JFXButton>
+               </right>
+               <center>
+                  <Text fx:id="welcome" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Text>
+               </center>
+            </JFXToolbar>
+            <AnchorPane fx:id="holderPane" layoutY="72.0" prefHeight="544.0" prefWidth="569.0" />
+         </children>
+      </AnchorPane>
       <Pane prefHeight="617.0" prefWidth="171.0" style="-fx-background-color: #2d3447;">
          <children>
             <Label layoutX="25.0" layoutY="80.0" text="CarReview" textFill="#a0a2ab">
@@ -50,7 +72,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <JFXButton layoutX="9.0" layoutY="314.0" prefHeight="36.0" prefWidth="126.0" text="HOME" textFill="#a0a2ab">
+            <JFXButton layoutX="9.0" layoutY="314.0" onAction="#homeAction" prefHeight="36.0" prefWidth="126.0" text="HOME" textFill="#a0a2ab">
                <font>
                   <Font size="14.0" />
                </font>
@@ -76,29 +98,21 @@
                   <Font size="15.0" />
                </font>
             </JFXButton>
-         </children>
-      </Pane>
-      <AnchorPane layoutX="170.0" layoutY="-1.0" prefHeight="617.0" prefWidth="520.0">
-         <children>
-            <Separator layoutX="11.0" layoutY="55.0" prefHeight="15.0" prefWidth="549.0" />
-            <JFXToolbar prefHeight="62.0" prefWidth="569.0" style="-fx-background-color: #2d3447;">
-               <right>
-                  <JFXButton prefHeight="48.0" prefWidth="65.0" text=". . ." textFill="WHITE" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" layoutX="1.0" layoutY="533.0" prefHeight="70.0" prefWidth="171.0" spacing="10.0">
+               <children>
+                  <JFXButton fx:id="btnLogout" onAction="#logOut" style="-fx-background-color: red;" text="Log Out" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Black" size="25.0" />
+                        <Font size="15.0" />
                      </font>
                   </JFXButton>
-               </right>
-               <center>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" BorderPane.alignment="CENTER">
+                  <JFXButton fx:id="btnExit" layoutX="10.0" layoutY="10.0" onAction="#exit" style="-fx-background-color: red;" text="Exit" textFill="WHITE">
                      <font>
-                        <Font size="27.0" />
+                        <Font size="15.0" />
                      </font>
-                  </Text>
-               </center>
-            </JFXToolbar>
-            <AnchorPane fx:id="holderPane" layoutY="72.0" prefHeight="544.0" prefWidth="569.0" />
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+      </Pane>
    </children>
 </AnchorPane>
